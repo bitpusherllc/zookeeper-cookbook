@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of zookeeper.
 
+## v10.0.1.1
+
+### Fixes
+
+* Add trailing newline on zookeeper conf file
+
 ## v10.0.1
 
 ### Fixes
