@@ -40,7 +40,7 @@ action :render do
   file "#{new_resource.conf_dir}/#{new_resource.conf_file}" do
     owner   new_resource.user
     group   new_resource.user
-    content properties_config(new_resource.config)
+    content properties_config(new_resource.config) + "\n"
   end
 
   # Ensure that, even if an attribute is passed in, we can
