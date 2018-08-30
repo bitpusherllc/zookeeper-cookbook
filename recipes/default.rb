@@ -23,3 +23,6 @@ include_recipe 'zookeeper::install'
 
 # set config path and render config
 include_recipe 'zookeeper::config_render'
+
+# create service configuration
+include_recipe 'zookeeper::service'
