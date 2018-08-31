@@ -67,7 +67,6 @@ action :render do
       username: new_resource.username
     )
     cookbook 'zookeeper'
-    notifies :restart, 'service[zookeeper]' if new_resource.restart_on_reconfig
   end
 end
 
