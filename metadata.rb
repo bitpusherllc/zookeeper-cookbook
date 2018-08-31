@@ -3,7 +3,7 @@ maintainer       'EverTrue'
 maintainer_email 'devops@evertrue.com'
 license          'Apache-2.0'
 description      'Installs/Configures zookeeper'
-version          '11.1.5'
+version          '11.1.6'
 
 issues_url 'https://github.com/evertrue/zookeeper-cookbook/issues'
 source_url 'https://github.com/evertrue/zookeeper-cookbook/'

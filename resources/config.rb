@@ -28,6 +28,7 @@ property :log_dir,           String, default: '/var/log/zookeeper'
 property :env_vars,          Hash, default: {}
 property :user,              String, default: 'zookeeper'
 property :java_opts,         String
+property :username,          String
 property :version,           String
 property :prometheus_metrics_port, Integer, default: 7074
 
