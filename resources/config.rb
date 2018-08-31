@@ -48,11 +48,22 @@ action :render do
   env_vars_hash['ZOOCFG']      = new_resource.conf_file
   env_vars_hash['ZOO_LOG_DIR'] = new_resource.log_dir
   env_vars_hash['JVMFLAGS']    = new_resource.java_opts if new_resource.java_opts
+  env_vars_hash['SERVER_JVMFLAGS'] = "-javaagent:#{new_resource.install_dir}/zookeeper-#{new_resource.version}-addons/jmx_prometheus_javaagent-0.3.1.jar=#{new_resource.prometheus_metrics_port?}:#{new_resource.conf_dir}/zookeeper.yml"
 
   file "#{new_resource.conf_dir}/zookeeper-env.sh" do
     owner   new_resource.user
     group   new_resource.user
     content exports_config(env_vars_hash) + "\n"
+  end
+
+  template "#{new_resource.conf_dir}/zookeeper.yml" do
+    source 'zookeeper.yml.erb'
+    mode   '0644'
+    variables(
+      username: new_resource.username
+    )
+    cookbook new_resource.template_cookbook
+    notifies :restart, 'service[zookeeper]' if new_resource.restart_on_reconfig
   end
 end
 

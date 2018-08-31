@@ -26,6 +26,7 @@ property :install_dir,         String, default: '/opt'
 property :log_dir,             String, default: '/var/log/zookeeper'
 property :data_dir,            String, default: '/var/lib/zookeeper'
 property :use_java_cookbook,   [true, false], default: true
+property :prometheus_metrics_port, Integer, default: 7074
 
 # Install Zookeeper
 action :install do
@@ -38,6 +39,8 @@ action :install do
   else
     Chef::Log.info "Assuming you've provided your own Java"
   end
+
+  include_recipe 'maven::default'
 
   # build-essential is required to build the zookeeper gem
   build_essential 'install compilation tools' do
@@ -83,6 +86,19 @@ action :install do
     group     new_resource.username
     mode      '0700'
     recursive true
+  end
+
+  directory "#{new_resource.install_dir}/zookeeper-#{new_resource.version}-addons" do
+    owner     new_resource.username
+    group     new_resource.username
+    mode      '0755'
+    recursive true
+  end
+
+  maven 'jmx_prometheus_javaagent' do
+    group_id 'io.prometheus.jmx'
+    version '0.3.1'
+    dest "#{new_resource.install_dir}/zookeeper-#{new_resource.version}-addons"
   end
 end
 
