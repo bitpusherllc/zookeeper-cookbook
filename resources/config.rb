@@ -23,6 +23,7 @@ property :config,            Hash, default: { 'clientPort' => 2181,
                                               'tickTime'   => 2000,
                                               'initLimit'  => 5,
                                               'syncLimit'  => 2 }
+property :install_dir,       String, default: '/opt'
 property :log_dir,           String, default: '/var/log/zookeeper'
 property :env_vars,          Hash, default: {}
 property :user,              String, default: 'zookeeper'
