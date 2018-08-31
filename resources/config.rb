@@ -28,6 +28,7 @@ property :log_dir,           String, default: '/var/log/zookeeper'
 property :env_vars,          Hash, default: {}
 property :user,              String, default: 'zookeeper'
 property :java_opts,         String
+property :version,           String
 
 action :render do
   directory new_resource.conf_dir do

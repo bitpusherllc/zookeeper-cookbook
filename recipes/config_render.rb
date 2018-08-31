@@ -22,9 +22,11 @@ zookeeper_config 'zookeeper config' do
     conf_dir
     conf_file
     config
+    install_dir
     log_dir
     user
     env_vars
     java_opts
+    version
   ).each { |key| send(key, node['zookeeper'][key]) if node['zookeeper'][key] }
 end
