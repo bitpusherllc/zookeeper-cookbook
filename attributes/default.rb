@@ -14,6 +14,7 @@ default['zookeeper']['conf_dir']    = "#{node['zookeeper']['install_dir']}/zooke
 default['zookeeper']['conf_file']   = 'zoo.cfg'
 default['zookeeper']['java_opts']   = "-Xmx#{allocated_memory}"
 default['zookeeper']['log_dir']     = '/var/log/zookeeper'
+default['zookeeper']['jmx_prometheus_version'] = '0.3.1'
 
 # One of: 'upstart', 'runit', 'exhibitor', systemd'
 default['zookeeper']['service_style'] = 'runit'

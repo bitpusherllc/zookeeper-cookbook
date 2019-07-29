@@ -26,6 +26,7 @@ property :install_dir,         String, default: '/opt'
 property :log_dir,             String, default: '/var/log/zookeeper'
 property :data_dir,            String, default: '/var/lib/zookeeper'
 property :use_java_cookbook,   [true, false], default: true
+property :jmx_prometheus_version, String
 property :prometheus_metrics_port, Integer, default: 7074
 
 # Install Zookeeper
@@ -97,7 +98,7 @@ action :install do
 
   maven 'jmx_prometheus_javaagent' do
     group_id 'io.prometheus.jmx'
-    version '0.3.1'
+    version '#{new_resource.jmx_prometheus_version}'
     dest "#{new_resource.install_dir}/zookeeper-#{new_resource.version}-addons"
   end
 end
