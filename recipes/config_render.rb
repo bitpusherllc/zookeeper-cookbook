@@ -29,6 +29,7 @@ zookeeper_config 'zookeeper config' do
     java_opts
     username
     version
+    jmx_prometheus_version
     prometheus_metrics_port
   ).each { |key| send(key, node['zookeeper'][key]) if node['zookeeper'][key] }
 end

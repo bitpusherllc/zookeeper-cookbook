@@ -30,7 +30,7 @@ property :user,              String, default: 'zookeeper'
 property :java_opts,         String
 property :username,          String
 property :version,           String
-property :jmx_prometheus_version, String
+property :jmx_prometheus_version, String, default: '0.3.1'
 property :prometheus_metrics_port, Integer, default: 7074
 
 action :render do
